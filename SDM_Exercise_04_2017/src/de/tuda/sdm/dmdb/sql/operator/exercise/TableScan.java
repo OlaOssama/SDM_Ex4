@@ -9,24 +9,26 @@ import de.tuda.sdm.dmdb.storage.AbstractRecord;
 
 @SuppressWarnings("unused")
 public class TableScan extends TableScanBase {
-	
-	public TableScan(AbstractTable table){
+
+	public TableScan(AbstractTable table) {
 		super(table);
 	}
 
 	@Override
 	public void open() {
-		//TODO: implement this method
+		tableIter = table.iterator();
 	}
-	
+
 	@Override
 	public AbstractRecord next() {
-		//TODO: implement this method
-		return null;
+		if (tableIter.hasNext()) {
+			return tableIter.next();
+		} else {
+			return null;
+		}
 	}
-	
+
 	@Override
 	public void close() {
-		//TODO: implement this method
 	}
 }
