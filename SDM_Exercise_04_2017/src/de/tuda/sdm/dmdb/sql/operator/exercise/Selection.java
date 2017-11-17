@@ -8,7 +8,7 @@ import de.tuda.sdm.dmdb.storage.types.AbstractSQLValue;
 
 @SuppressWarnings("unused")
 public class Selection extends SelectionBase {
-	
+
 	public Selection(Operator child, int attribute, AbstractSQLValue constant) {
 		super(child, attribute, constant);
 	}
@@ -17,13 +17,19 @@ public class Selection extends SelectionBase {
 	public void open() {
 		child.open();
 	}
-	
+
 	@Override
 	public AbstractRecord next() {
-		
+		AbstractRecord ar = child.next();
+		if (ar != null) {
+			AbstractSQLValue val = ar.getValue(attribute);
+			if (val.compareTo(constant) == 0) {
+				return ar;
+			}
+		}
 		return null;
 	}
-	
+
 	@Override
 	public void close() {
 		child.close();
