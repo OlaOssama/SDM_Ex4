@@ -24,11 +24,8 @@ public class Projection extends ProjectionBase {
 	public AbstractRecord next() {
 		AbstractRecord ar = child.next();
 		if (ar != null) {
-			AbstractRecord result = new Record(attributes.size());
-			for (int i = 0; i < attributes.size(); i++) {
-				result.setValue(i, ar.getValue(attributes.get(i)));
-			}
-			return result;
+			ar.keepValues(attributes);
+			return ar;
 		}
 		return null;
 	}
