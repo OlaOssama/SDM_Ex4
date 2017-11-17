@@ -33,10 +33,10 @@ public class EquiJoin extends EquiJoinBase {
 					for (; i < left.getValues().length; i++) {
 						result.setValue(i, left.getValue(i));
 					}
-					for (; i < right.getValues().length; i++) {
+					for (; i < left.getValues().length + right.getValues().length; i++) {
 						result.setValue(i, right.getValue(i - left.getValues().length));
 					}
-
+					
 					return result;
 				}
 			}
