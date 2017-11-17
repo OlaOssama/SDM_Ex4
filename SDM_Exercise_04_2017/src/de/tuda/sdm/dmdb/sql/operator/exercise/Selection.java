@@ -21,13 +21,17 @@ public class Selection extends SelectionBase {
 	@Override
 	public AbstractRecord next() {
 		AbstractRecord ar = child.next();
-		if (ar != null) {
-			AbstractSQLValue val = ar.getValue(attribute);
-			if (val.compareTo(constant) == 0) {
-				return ar;
+		do {
+			if (ar != null) {
+				AbstractSQLValue val = ar.getValue(attribute);
+				if (val.compareTo(constant) == 0) {
+					return ar;
+				}
+			} else {
+				return null;
 			}
-		}
-		return null;
+			ar = child.next();
+		} while (true);
 	}
 
 	@Override
