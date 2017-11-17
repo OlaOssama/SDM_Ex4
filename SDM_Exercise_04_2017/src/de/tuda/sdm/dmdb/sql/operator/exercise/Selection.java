@@ -15,17 +15,17 @@ public class Selection extends SelectionBase {
 
 	@Override
 	public void open() {
-		//TODO: implement this method
+		child.open();
 	}
 	
 	@Override
 	public AbstractRecord next() {
-		//TODO: implement this method
+		
 		return null;
 	}
 	
 	@Override
 	public void close() {
-		//TODO: implement this method
+		child.close();
 	}
 }
